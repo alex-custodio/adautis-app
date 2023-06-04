@@ -1,9 +1,9 @@
-import 'package:adautisapp/screens/chat/chat_screen.dart';
+import 'package:adautisapp/screens/home/home_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
   runApp(MaterialApp(
-    home: ChatPage(),
+    home: HomePage(),
     debugShowCheckedModeBanner: false,
   ));
 }

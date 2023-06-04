@@ -1,8 +1,10 @@
 import 'dart:convert';
 import 'dart:ui';
+import 'package:adautisapp/components/bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import '../../components/floating_chat_button.dart';
 
 class ChatPage extends StatefulWidget {
   @override
@@ -16,6 +18,9 @@ class _ChatPageState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: BottomNavBar(),
+      floatingActionButton: ChatButton(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       backgroundColor: Colors.indigo,
       body: SafeArea(
         child: Stack(
@@ -83,58 +88,56 @@ class _ChatPageState extends State<ChatPage> {
   }
 
   Widget _formChat() {
-  return Positioned(
-    child: Align(
-      alignment: Alignment.bottomCenter,
-      child: Container(
-        height: 120,
-        padding: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
-        color: Colors.white,
-        child: TextField(
-          controller: controller,
-          decoration: InputDecoration(
-            hintText: 'Digite sua mensagem...',
-            suffixIcon: Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                  color: Colors.indigo),
-              padding: EdgeInsets.all(12),
-              child: IconButton(
-                icon: Icon(
-                  Icons.send_rounded,
-                  color: Colors.white,
-                  size: 28,
+    return Positioned(
+      child: Align(
+        alignment: Alignment.bottomCenter,
+        child: Container(
+          height: 120,
+          padding: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+          color: Colors.white,
+          child: TextField(
+            controller: controller,
+            decoration: InputDecoration(
+              hintText: 'Digite sua mensagem...',
+              suffixIcon: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    color: Colors.indigo),
+                padding: EdgeInsets.all(12),
+                child: IconButton(
+                  icon: Icon(
+                    Icons.send_rounded,
+                    color: Colors.white,
+                    size: 28,
+                  ),
+                  onPressed: () async {
+                    await sendQuestion();
+                  },
                 ),
-                onPressed: () async {
-                  await sendQuestion();
-                },
+              ),
+              filled: true,
+              fillColor: Colors.blueGrey[50],
+              labelStyle: TextStyle(fontSize: 12),
+              contentPadding: EdgeInsets.all(20),
+              enabledBorder: OutlineInputBorder(
+                borderSide:
+                    BorderSide(color: const Color.fromARGB(255, 236, 239, 241)),
+                borderRadius: BorderRadius.circular(25),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide:
+                    BorderSide(color: const Color.fromARGB(255, 233, 237, 239)),
+                borderRadius: BorderRadius.circular(25),
               ),
             ),
-            filled: true,
-            fillColor: Colors.blueGrey[50],
-            labelStyle: TextStyle(fontSize: 12),
-            contentPadding: EdgeInsets.all(20),
-            enabledBorder: OutlineInputBorder(
-              borderSide:
-                  BorderSide(color:
-                      const Color.fromARGB(255, 236, 239, 241)),
-              borderRadius: BorderRadius.circular(25),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide:
-                  BorderSide(color:
-                      const Color.fromARGB(255, 233, 237, 239)),
-              borderRadius: BorderRadius.circular(25),
-            ),
+            onSubmitted: (value) async {
+              await sendQuestion();
+            },
           ),
-          onSubmitted:(value) async {
-            await sendQuestion();
-          },
         ),
       ),
-    ),
-  );
-}
+    );
+  }
 
   Future<void> sendQuestion() async {
     if (controller.text.isEmpty) return;
