@@ -21,7 +21,7 @@ class _ChatPageState extends State<ChatPage> {
       bottomNavigationBar: BottomNavBar(),
       floatingActionButton: ChatButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      backgroundColor: Colors.indigo,
+      backgroundColor: Color(0xFFA020F0),
       body: SafeArea(
         child: Stack(
           children: [
@@ -102,7 +102,7 @@ class _ChatPageState extends State<ChatPage> {
               suffixIcon: Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
-                    color: Colors.indigo),
+                    color: Color(0xFFA020F0)),
                 padding: EdgeInsets.all(12),
                 child: IconButton(
                   icon: Icon(
