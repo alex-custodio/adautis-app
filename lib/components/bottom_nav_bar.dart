@@ -11,7 +11,6 @@ class BottomNavBar extends StatelessWidget {
       onTap: (value) {
         Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => value == 0 ? const HomePage() : const ProfilePage()));
-        // Ao invés do ChatPage aqui deve estar ProfilePage
       },
       selectedItemColor: Colors.purple,
       backgroundColor: Colors.grey[100],
