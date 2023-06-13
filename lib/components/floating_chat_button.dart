@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../screens/chat/chat_screen.dart';
+import '../../../screens/chat/chat_screen.dart';
 
 class ChatButton extends StatelessWidget {
   const ChatButton({super.key});
@@ -8,7 +8,7 @@ class ChatButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-        backgroundColor: Colors.purple,
+        backgroundColor: Color(0xFF9932CC),
         onPressed: (){
           Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChatPage()));
         },

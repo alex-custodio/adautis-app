@@ -1,9 +1,7 @@
-import 'package:adautisapp/components/bottom_nav_bar.dart';
-import 'package:adautisapp/components/floating_chat_button.dart';
 import 'package:flutter/material.dart';
 
-import 'custom_clip.dart';
-import 'custom_clip_decoracao.dart';
+import '../../../../../components/bottom_nav_bar.dart';
+import '../../../../../components/floating_chat_button.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -15,262 +13,233 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return  SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.grey[100],
-        body: ListView(
+    return Scaffold(
+      backgroundColor: Color(0xFF9932CC),
+      body: SafeArea(
+        child: ListView(
           children: [
-            buildContainerTitulo(),
-            // buildContainerDecoracao(),
-            SizedBox(height: 8),
-            Padding(
-              padding: const EdgeInsets.all(25),
-              child: buildBody(),
-            )
+            Stack(
+              children: [
+                Column(
+                  children: [buildTitulo(), buidContainerMaterias()],
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 120, left: 25, right: 25),
+                  child: builMaterias(),
+                )
+              ],
+            ),
           ],
         ),
-        bottomNavigationBar: BottomNavBar(),
-        floatingActionButton: ChatButton(),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      )
-    );
-  }
-
-  ClipPath buildContainerDecoracao() {
-    return ClipPath(
-      clipper: CustomClipDecoracao(),
-      child: Container(
-        height: 160,
-        color: Colors.purple.withOpacity(0.6),
       ),
+      bottomNavigationBar: BottomNavBar(),
+      floatingActionButton: ChatButton(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 
-
-
-  
-
-  ClipPath buildContainerTitulo() {
-    return ClipPath(
-      clipper: CustomClipTitulo(),
-      child: Container(
-        height: 160,
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Color(0xFFBA55D3),
-              Color(0xFF9932CC),
-              Color(0XFFA020F0)
-            ]
-          )
-        ),
-        child: const Padding(
-          padding: EdgeInsets.only(top: 50, left: 40),
-          child: Text(
-            "Descubra!",
-            style: TextStyle(
-              fontSize: 35,
-              color: Colors.white,
-              fontWeight: FontWeight.w500
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Column buildBody() {
+  Column builMaterias() {
     return Column(
       children: [
-        Text(
-          "Matérias",
-          style: TextStyle(
-            fontSize: 28,
-
-          ),
-        ),
-        SizedBox(height: 24,),
-        Ink(
-          child: ListTile(
-            leading: CircleAvatar(
-              radius: 20,
-              backgroundImage: AssetImage("assets/images/portugues.png"),
-            ),
-            title: Text(
-              "Português",
-              style: TextStyle(
-                fontSize: 20
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                "Escolha a matéria",
+                style: TextStyle(fontSize: 22),
               ),
-            ),
-          visualDensity: VisualDensity(horizontal: 3),
-            onTap: (){},
-          ),
-          decoration: BoxDecoration(
-            color: Colors.grey[100],
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
-                blurRadius: 5,
-              )
-            ]
+            ],
           ),
         ),
-        SizedBox(height: 6),
+        SizedBox(height: 16),
         Ink(
+          padding: EdgeInsets.all(8),
+          decoration: BoxDecoration(
+              color: Colors.grey.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(15)),
+          child: ListTile(
+            leading: const CircleAvatar(
+              backgroundImage: AssetImage("assets/images/Portugues.png"),
+              radius: 24,
+            ),
+            title: Text("Lingua Portuguesa"),
+            subtitle: Text("5 textos"),
+            trailing: IconButton(
+              icon: const Icon(
+                Icons.arrow_forward_ios_rounded,
+              ),
+              onPressed: () {},
+            ),
+            visualDensity: VisualDensity(vertical: 4),
+            onTap: () {},
+          ),
+        ),
+        SizedBox(height: 16),
+        Ink(
+          padding: EdgeInsets.all(8),
+          decoration: BoxDecoration(
+              color: Colors.grey.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(15)),
           child: ListTile(
             leading: CircleAvatar(
-              radius: 20,
               backgroundImage: AssetImage("assets/images/matematica.png"),
+              radius: 24,
             ),
-            title: Text(
-              "Matemática",
-              style: TextStyle(
-                fontSize: 20
+            title: Text("Matemática"),
+            subtitle: Text("5 textos"),
+            trailing: IconButton(
+              icon: Icon(
+                Icons.arrow_forward_ios_rounded,
               ),
+              onPressed: () {},
             ),
-            visualDensity: VisualDensity(horizontal: 3),
-            onTap: (){},
-          ),
-          decoration: BoxDecoration(
-            color: Colors.grey[100],
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
-                blurRadius: 5
-              )
-            ]
+            visualDensity: VisualDensity(vertical: 4),
+            onTap: () {},
           ),
         ),
-        SizedBox(height: 6),
+        SizedBox(height: 16),
         Ink(
+          padding: EdgeInsets.all(8),
+          decoration: BoxDecoration(
+              color: Colors.grey.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(15)),
           child: ListTile(
             leading: CircleAvatar(
               backgroundImage: AssetImage("assets/images/ciencias.png"),
+              radius: 24,
             ),
-            title: Text(
-              "Ciências",
-              style: TextStyle(
-                fontSize: 20
-              ),
+            title: Text("Ciências"),
+            subtitle: Text("5 textos"),
+            trailing: IconButton(
+              icon: Icon(Icons.arrow_forward_ios),
+              onPressed: () {},
             ),
-            visualDensity: VisualDensity(horizontal: 3),
-            onTap: (){},
-          ),
-          decoration: BoxDecoration(
-            color: Colors.grey[100],
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
-                blurRadius: 5,
-              )
-            ]
+            visualDensity: VisualDensity(vertical: 4),
+            onTap: () {},
           ),
         ),
-        SizedBox(height: 6),
+        SizedBox(height: 16),
         Ink(
+          padding: EdgeInsets.all(8),
+          decoration: BoxDecoration(
+              color: Colors.grey.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(15)),
           child: ListTile(
             leading: CircleAvatar(
-              radius: 20,
-              backgroundImage: AssetImage("assets/images/historia.png")
+              backgroundImage: AssetImage("assets/images/historia.png"),
+              radius: 24,
             ),
-            title: Text(
-              "História",
-              style: TextStyle(
-                fontSize: 20
-              ),
+            title: Text("História"),
+            subtitle: Text("5 textos"),
+            trailing: IconButton(
+              icon: Icon(Icons.arrow_forward_ios),
+              onPressed: () {},
             ),
-            visualDensity: VisualDensity(horizontal: 3),
-            onTap: (){},
-          ),
-          decoration: BoxDecoration(
-            color: Colors.grey[100],
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
-                blurRadius: 5,
-              )
-            ]
+            visualDensity: VisualDensity(vertical: 4),
+            onTap: () {},
           ),
         ),
-        SizedBox(height: 6),
+        SizedBox(height: 16),
         Ink(
-          child: ListTile(
-            leading: CircleAvatar(
-              backgroundImage: AssetImage("assets/images/geografia.png")
-            ),
-            title: Text(
-              "Geografia",
-              style: TextStyle(
-                fontSize: 20
-              ),
-            ),
-            visualDensity: VisualDensity(horizontal: 3),
-            onTap: (){},
-          ),
+          padding: EdgeInsets.all(8),
           decoration: BoxDecoration(
-            color: Colors.grey[100],
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
-                blurRadius: 5,
-              )
-            ]
+              color: Colors.grey.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(15)),
+          child: ListTile(
+            leading: const CircleAvatar(
+              backgroundImage: AssetImage("assets/images/geografia.png"),
+              radius: 24,
+            ),
+            title: Text("Geografia"),
+            subtitle: Text("5 textos"),
+            trailing: IconButton(
+              icon: const Icon(
+                Icons.arrow_forward_ios_rounded,
+              ),
+              onPressed: () {},
+            ),
+            visualDensity: VisualDensity(vertical: 4),
+            onTap: () {},
           ),
         ),
-        SizedBox(height: 6),
+        SizedBox(height: 16),
         Ink(
+          padding: EdgeInsets.all(8),
+          decoration: BoxDecoration(
+              color: Colors.grey.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(15)),
           child: ListTile(
-            leading: CircleAvatar(
-              radius: 20,
+            leading: const CircleAvatar(
               backgroundImage: AssetImage("assets/images/educacao-fisica.png"),
+              radius: 24,
             ),
-            title: Text(
-              "Educação Física",
-              style: TextStyle(
-                fontSize: 20
+            title: Text("Educação Física"),
+            subtitle: Text("5 textos"),
+            trailing: IconButton(
+              icon: const Icon(
+                Icons.arrow_forward_ios_rounded,
               ),
+              onPressed: () {},
             ),
-            visualDensity: VisualDensity(horizontal: 3),
-            onTap: (){},
-          ),
-          decoration: BoxDecoration(
-            color: Colors.grey[100],
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
-                blurRadius: 5,
-              )
-            ]
+            visualDensity: VisualDensity(vertical: 4),
+            onTap: () {},
           ),
         ),
-        SizedBox(height: 6),
+        SizedBox(height: 16),
         Ink(
-          child: ListTile(
-            leading: CircleAvatar(
-              radius: 20,
-              backgroundImage:AssetImage("assets/images/artes.png"),
-            ),
-            title: Text(
-              "Artes",
-              style: TextStyle(
-                fontSize: 20
-              ),
-            ),
-            visualDensity: VisualDensity(horizontal: 3),
-            onTap: (){},
-          ),
+          padding: EdgeInsets.all(8),
           decoration: BoxDecoration(
-            color: Colors.grey[100],
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
-                blurRadius: 5,
-              )
-            ]
+              color: Colors.grey.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(15)),
+          child: ListTile(
+            leading: const CircleAvatar(
+              backgroundImage: AssetImage("assets/images/artes.png"),
+              radius: 24,
+            ),
+            title: Text("Artes"),
+            subtitle: Text("5 textos"),
+            trailing: IconButton(
+              icon: const Icon(
+                Icons.arrow_forward_ios_rounded,
+              ),
+              onPressed: () {},
+            ),
+            visualDensity: VisualDensity(vertical: 4),
+            onTap: () {},
           ),
-        )
+        ),
       ],
     );
   }
+
+  Ink buidContainerMaterias() {
+    return Ink(
+      height: 950,
+      width: double.infinity,
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(45), topRight: Radius.circular(45))),
+    );
+  }
+
+  Padding buildTitulo() {
+    return Padding(
+      padding: const EdgeInsets.all(30),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            "Informe-se",
+            style: TextStyle(fontSize: 28, color: Colors.white),
+          ),
+        ],
+      ),
+    );
+  }
 }
+
+
 
