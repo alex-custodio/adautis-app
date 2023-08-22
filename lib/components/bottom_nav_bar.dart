@@ -12,7 +12,7 @@ class BottomNavBar extends StatelessWidget {
         Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => value == 0 ? const HomePage() : const ProfilePage()));
       },
-      selectedItemColor: Color(0xFF9932CC),
+      selectedItemColor: const Color(0xFF9932CC),
       iconSize: 30,
       items: const [
         BottomNavigationBarItem(

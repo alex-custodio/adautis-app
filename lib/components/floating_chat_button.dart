@@ -8,7 +8,7 @@ class ChatButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-        backgroundColor: Color(0xFF9932CC),
+        backgroundColor: const Color(0xFF9932CC),
         onPressed: (){
           Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChatPage()));
         },
