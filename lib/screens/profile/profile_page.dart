@@ -188,17 +188,28 @@ class _ProfilePageState extends State<ProfilePage> {
   buildActivityContainer(String imageLink, String title) {
     return Column(
       children: [
-        Container(
-          height: 150,
-          width: 150,
-          decoration: const BoxDecoration(
-            borderRadius:
-                BorderRadius.only(topLeft: Radius.circular(256), topRight: Radius.circular(256)),
-          ),
-          child: Image.network(
-            imageLink,
-            width: 150,
+        InkWell(
+          onTap: () {
+            print('open');
+          },
+          onLongPress: () {
+            print('options');
+          },
+          child: Container(
             height: 150,
+            width: 150,
+            decoration: const BoxDecoration(
+              borderRadius:
+                  BorderRadius.only(topLeft: Radius.circular(256), topRight: Radius.circular(256)),
+            ),
+            child: ClipRRect(
+              borderRadius: const BorderRadius.vertical(top: Radius.circular(54)),
+              child: Image.network(
+                imageLink,
+                width: 150,
+                height: 150,
+              ),
+            ),
           ),
         ),
         Stack(
@@ -209,8 +220,8 @@ class _ProfilePageState extends State<ProfilePage> {
               width: 113,
               decoration: const BoxDecoration(
                   color: Color(0XFFA020F0),
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(16), bottomRight: Radius.circular(16))),
+                  borderRadius: BorderRadius.vertical(
+                      bottom: Radius.circular(16))),
             ),
             Text(
               title,
