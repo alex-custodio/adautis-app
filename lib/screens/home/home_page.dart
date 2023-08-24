@@ -1,3 +1,4 @@
+import 'package:adautisapp/screens/pasta_pri/telaportugues.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../components/bottom_nav_bar.dart';
@@ -57,8 +58,7 @@ class _HomePageState extends State<HomePage> {
         Ink(
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
-              color: Colors.grey.withOpacity(0.1),
-              borderRadius: BorderRadius.circular(15)),
+              color: Colors.grey.withOpacity(0.1), borderRadius: BorderRadius.circular(15)),
           child: ListTile(
             leading: const CircleAvatar(
               backgroundImage: AssetImage("assets/images/Portugues.png"),
@@ -73,15 +73,19 @@ class _HomePageState extends State<HomePage> {
               onPressed: () {},
             ),
             visualDensity: const VisualDensity(vertical: 4),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: ((context) => const Telaportugues()))
+              );
+            },
           ),
         ),
         const SizedBox(height: 16),
         Ink(
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
-              color: Colors.grey.withOpacity(0.1),
-              borderRadius: BorderRadius.circular(15)),
+              color: Colors.grey.withOpacity(0.1), borderRadius: BorderRadius.circular(15)),
           child: ListTile(
             leading: const CircleAvatar(
               backgroundImage: AssetImage("assets/images/matematica.png"),
@@ -103,8 +107,7 @@ class _HomePageState extends State<HomePage> {
         Ink(
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
-              color: Colors.grey.withOpacity(0.1),
-              borderRadius: BorderRadius.circular(15)),
+              color: Colors.grey.withOpacity(0.1), borderRadius: BorderRadius.circular(15)),
           child: ListTile(
             leading: const CircleAvatar(
               backgroundImage: AssetImage("assets/images/ciencias.png"),
@@ -124,8 +127,7 @@ class _HomePageState extends State<HomePage> {
         Ink(
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
-              color: Colors.grey.withOpacity(0.1),
-              borderRadius: BorderRadius.circular(15)),
+              color: Colors.grey.withOpacity(0.1), borderRadius: BorderRadius.circular(15)),
           child: ListTile(
             leading: const CircleAvatar(
               backgroundImage: AssetImage("assets/images/historia.png"),
@@ -145,8 +147,7 @@ class _HomePageState extends State<HomePage> {
         Ink(
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
-              color: Colors.grey.withOpacity(0.1),
-              borderRadius: BorderRadius.circular(15)),
+              color: Colors.grey.withOpacity(0.1), borderRadius: BorderRadius.circular(15)),
           child: ListTile(
             leading: const CircleAvatar(
               backgroundImage: AssetImage("assets/images/geografia.png"),
@@ -168,8 +169,7 @@ class _HomePageState extends State<HomePage> {
         Ink(
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
-              color: Colors.grey.withOpacity(0.1),
-              borderRadius: BorderRadius.circular(15)),
+              color: Colors.grey.withOpacity(0.1), borderRadius: BorderRadius.circular(15)),
           child: ListTile(
             leading: const CircleAvatar(
               backgroundImage: AssetImage("assets/images/educacao-fisica.png"),
@@ -191,8 +191,7 @@ class _HomePageState extends State<HomePage> {
         Ink(
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
-              color: Colors.grey.withOpacity(0.1),
-              borderRadius: BorderRadius.circular(15)),
+              color: Colors.grey.withOpacity(0.1), borderRadius: BorderRadius.circular(15)),
           child: ListTile(
             leading: const CircleAvatar(
               backgroundImage: AssetImage("assets/images/artes.png"),
@@ -220,8 +219,8 @@ class _HomePageState extends State<HomePage> {
       width: double.infinity,
       decoration: const BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(45), topRight: Radius.circular(45))),
+          borderRadius:
+              BorderRadius.only(topLeft: Radius.circular(45), topRight: Radius.circular(45))),
     );
   }
 
@@ -240,6 +239,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
-
-

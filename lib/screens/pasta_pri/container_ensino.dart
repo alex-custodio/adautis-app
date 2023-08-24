@@ -24,16 +24,14 @@ class _ContainerEnsinoState extends State<ContainerEnsino> {
       child: Column(
         children: [
           ClipRRect(
-            borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
             child: Image.asset(
               widget.dados.imagem,
             ),
           ),
           Text(widget.dados.ensino,
-              style: const TextStyle(
-                  fontSize: 20,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold)),
+              style:
+                  const TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold)),
         ],
       ),
     );

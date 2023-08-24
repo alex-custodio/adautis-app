@@ -22,7 +22,7 @@ class _TelaportuguesState extends State<Telaportugues> {
         body: ListView(
           children: [
             Padding(
-              padding: const EdgeInsets.only(top:8.0),
+              padding: const EdgeInsets.only(top: 8.0),
               child: buildComoAdaptar(context),
             ),
           ],
