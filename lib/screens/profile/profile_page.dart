@@ -2,6 +2,7 @@ import 'package:adautisapp/components/bottom_nav_bar.dart';
 import 'package:adautisapp/components/floating_chat_button.dart';
 import 'package:adautisapp/db/atividade_adaptada_dao.dart';
 import 'package:adautisapp/domain/atividade_adaptada.dart';
+import 'package:adautisapp/screens/paste_emy/tela_atividades.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -62,9 +63,7 @@ class _ProfilePageState extends State<ProfilePage> {
       child: Row(
         children: [
           const CircleAvatar(
-            backgroundImage: AssetImage(
-                "assets/images/random_photo.jpeg"
-            ),
+            backgroundImage: AssetImage("assets/images/random_photo.jpeg"),
             radius: 60,
           ),
           const SizedBox(width: 24),
@@ -191,7 +190,10 @@ class _ProfilePageState extends State<ProfilePage> {
       children: [
         InkWell(
           onTap: () {
-            print('open');
+            Navigator.push(
+                context,
+                MaterialPageRoute(builder: ((context) => const TelaAtividades()))
+            );
           },
           onLongPress: () {
             print('options');
@@ -221,8 +223,7 @@ class _ProfilePageState extends State<ProfilePage> {
               width: 113,
               decoration: const BoxDecoration(
                   color: Color(0XFFA020F0),
-                  borderRadius: BorderRadius.vertical(
-                      bottom: Radius.circular(16))),
+                  borderRadius: BorderRadius.vertical(bottom: Radius.circular(16))),
             ),
             Text(
               title,
