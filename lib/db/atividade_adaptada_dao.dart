@@ -5,17 +5,17 @@ class AtividadeAdaptadaDao {
     AtividadeAdaptada(
       title: "Português",
       imageLink:
-          "https://static.todamateria.com.br/upload/at/iv/atividadesdeportuguessilabas1-cke.jpg",
+          "assets/images/foto_portugues.jpeg",
     ),
     AtividadeAdaptada(
       title: "Matemática",
       imageLink:
-          "https://static.todamateria.com.br/upload/or/de/ordemcrescenteeordemdecrescente-cke.jpg",
+          "assets/images/foto_matematica.jpeg",
     ),
     AtividadeAdaptada(
         title: "Direito Penal",
         imageLink:
-            "https://imgv2-1-f.scribdassets.com/img/document/63724441/original/e59f0b6002/1687453486?v=1")
+            "assets/images/foto_direito_penal.jpeg")
   ];
 
   Future<List<AtividadeAdaptada>> findAll() async {

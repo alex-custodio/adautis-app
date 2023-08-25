@@ -62,8 +62,9 @@ class _ProfilePageState extends State<ProfilePage> {
       child: Row(
         children: [
           const CircleAvatar(
-            backgroundImage: NetworkImage(
-                "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cmFuZG9tJTIwcGVvcGxlfGVufDB8fDB8fHww&w=1000&q=80"),
+            backgroundImage: AssetImage(
+                "assets/images/random_photo.jpeg"
+            ),
             radius: 60,
           ),
           const SizedBox(width: 24),
@@ -204,7 +205,7 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
             child: ClipRRect(
               borderRadius: const BorderRadius.vertical(top: Radius.circular(54)),
-              child: Image.network(
+              child: Image.asset(
                 imageLink,
                 width: 150,
                 height: 150,
