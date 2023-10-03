@@ -1,7 +1,9 @@
 import 'package:adautisapp/components/bottom_nav_bar.dart';
 import 'package:adautisapp/components/floating_chat_button.dart';
 import 'package:adautisapp/db/atividade_adaptada_dao.dart';
+import 'package:adautisapp/db/perfil_dao.dart';
 import 'package:adautisapp/domain/atividade_adaptada.dart';
+import 'package:adautisapp/domain/profile.dart';
 import 'package:adautisapp/screens/paste_emy/tela_atividades.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +15,15 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  Future<List<AtividadeAdaptada>> listAtividades = AtividadeAdaptadaDao().findAll();
+  late Future<List<AtividadeAdaptada>> listAtividades;
+  late Future<List<Perfil>> listPerfis;
+
+  @override
+  void initState() {
+    super.initState();
+    listAtividades = AtividadeAdaptadaDao().getActivities();
+    listPerfis = PerfilDao().getProfiles();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,34 +69,49 @@ class _ProfilePageState extends State<ProfilePage> {
 
   buildPersonalInfoContainer() {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Row(
-        children: [
-          const CircleAvatar(
-            backgroundImage: AssetImage("assets/images/random_photo.jpeg"),
-            radius: 60,
-          ),
-          const SizedBox(width: 24),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              buildProfileTextName("Lohane de HA HA HA"),
-              buildProfileTextUsername("Lohanina123"),
-              Padding(
-                padding: const EdgeInsets.only(top: 24),
-                child: Row(
-                  children: [
-                    buildProfileButton("Configurações", const Color(0XFFA020F0)),
-                    const SizedBox(width: 16),
-                    buildProfileButton("Sair", Colors.red),
-                  ],
-                ),
-              )
-            ],
-          ),
-        ],
-      ),
-    );
+        padding: const EdgeInsets.all(16.0),
+        child: FutureBuilder(
+          future: listPerfis,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              final listPerfisFuture = snapshot.data;
+              return Row(
+                children: [
+                  CircleAvatar(
+                    backgroundImage:
+                        NetworkImage(listPerfisFuture!.elementAt(0).imageLink),
+                    radius: 60,
+                  ),
+                  const SizedBox(width: 24),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      buildProfileTextName(
+                          listPerfisFuture.elementAt(0).fullName.toUpperCase()),
+                      buildProfileTextUsername(
+                          listPerfisFuture.elementAt(0).username),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 24),
+                        child: Row(
+                          children: [
+                            buildProfileButton(
+                                "Configurações", const Color(0XFFA020F0)),
+                            const SizedBox(width: 16),
+                            buildProfileButton("Sair", Colors.red),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ],
+              );
+            } else {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          },
+        ));
   }
 
   buildProfileTextName(String nome) {
@@ -110,7 +135,9 @@ class _ProfilePageState extends State<ProfilePage> {
       child: ElevatedButton(
         onPressed: () {},
         style: ElevatedButton.styleFrom(
-            backgroundColor: color, elevation: 1, padding: const EdgeInsets.all(8)),
+            backgroundColor: color,
+            elevation: 1,
+            padding: const EdgeInsets.all(8)),
         child: Text(
           texto,
           style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
@@ -170,9 +197,11 @@ class _ProfilePageState extends State<ProfilePage> {
               final listAtividadesFuture = snapshot.data;
               return GridView.builder(
                 itemCount: listAtividadesFuture!.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2),
                 itemBuilder: (context, index) {
-                  return buildActivityContainer(listAtividadesFuture.elementAt(index).imageLink,
+                  return buildActivityContainer(
+                      listAtividadesFuture.elementAt(0).imageLink.toString(),
                       listAtividadesFuture.elementAt(index).title);
                 },
               );
@@ -192,8 +221,8 @@ class _ProfilePageState extends State<ProfilePage> {
           onTap: () {
             Navigator.push(
                 context,
-                MaterialPageRoute(builder: ((context) => const TelaAtividades()))
-            );
+                MaterialPageRoute(
+                    builder: ((context) => const TelaAtividades())));
           },
           onLongPress: () {
             print('options');
@@ -202,16 +231,18 @@ class _ProfilePageState extends State<ProfilePage> {
             height: 150,
             width: 150,
             decoration: const BoxDecoration(
-              borderRadius:
-                  BorderRadius.only(topLeft: Radius.circular(256), topRight: Radius.circular(256)),
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(256),
+                  topRight: Radius.circular(256)),
             ),
             child: ClipRRect(
-              borderRadius: const BorderRadius.vertical(top: Radius.circular(54)),
-              child: Image.asset(
+              borderRadius:
+                  const BorderRadius.vertical(top: Radius.circular(54)),
+              child: Image.network(
                 imageLink,
-                width: 150,
                 height: 150,
-              ),
+                width: 150,
+              )
             ),
           ),
         ),
@@ -223,12 +254,15 @@ class _ProfilePageState extends State<ProfilePage> {
               width: 113,
               decoration: const BoxDecoration(
                   color: Color(0XFFA020F0),
-                  borderRadius: BorderRadius.vertical(bottom: Radius.circular(16))),
+                  borderRadius:
+                      BorderRadius.vertical(bottom: Radius.circular(16))),
             ),
             Text(
               title,
-              style:
-                  const TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold),
+              style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold),
             ),
           ],
         ),
